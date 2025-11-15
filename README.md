@@ -2,7 +2,7 @@
 
 ## Setting up Locally:
 
-- You need `Python 3` installed on your computer
+- You need `Python 3` installed on your computer 
 
 Install the following Python dependencies:
 
