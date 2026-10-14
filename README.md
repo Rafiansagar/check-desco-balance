@@ -11,7 +11,7 @@ Already have a bot? Send `/mybots` to BotFather → pick your bot → **API Toke
 
 ## 2. Get the chat ID
 
-**For a private chat:** send `hi` to your bot, then open `https://api.telegram.org/bot<TOKEN>/getUpdates` and copy the number in `"chat":{"id": ...}` (not `update_id`).
+**For a private chat:** important { send `hi` } to your bot, then open `https://api.telegram.org/bot<TOKEN>/getUpdates` and copy the number in `"chat":{"id": ...}` (not `update_id`).
 
 **For a group:** add the bot to the group as admin. Add [@userinfobot](https://t.me/userinfobot) to the group to see the group `ID`, then remove it. The ID starts with `-` — keep it.
 
