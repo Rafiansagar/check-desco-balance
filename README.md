@@ -1,56 +1,33 @@
-# DESCO Balance Bot Script
+# DESCO Balance Bot
 
-## Setting up Locally:
+Sends your DESCO prepaid balance to Telegram every day at 9:00 PM (Dhaka), using GitHub Actions.
 
-- You need `Python 3` installed on your computer 
+## 1. Create a Telegram bot
 
-Install the following Python dependencies:
+1. Open [BotFather](https://t.me/botfather) and send `/newbot`.
+2. Copy the **bot token** it gives you.
 
-```bash
-pip install requests python-dotenv
-```
+## 2. Get the chat ID
 
-Rename the `.env.sample` file to `.env` file:
+**For a group:** add the bot to the group as admin. Add [@userinfobot](https://t.me/userinfobot) to the group to see the group `ID`, then remove it. The ID starts with `-` — keep it.
 
-```bash
-mv .env.sample .env
-```
+**For a private chat:** send `hi` to your bot, then open `https://api.telegram.org/bot<TOKEN>/getUpdates` and copy the number in `"chat":{"id": ...}` (not `update_id`).
 
-## Setting up the Telegram bot:
+## 3. Add GitHub secrets
 
-1. Open Botfather https://t.me/botfather and follow the instructions to create your bot (e.g, Desco Balance Bot). You will get a telegram bot token. 
-2. Copy and add it to `TELEGRAM_BOT_TOKEN` in the `.env` file.
-3. Send a `hi/hello` chat to your new bot.
-4. Open this URL in your browser `https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/getUpdates`
-5. Copy the chat `id` value and add it to the `TELEGRAM_CHAT_ID` in the `.env` file.
+In the repo: **Settings → Secrets and variables → Actions → New repository secret**
 
-## Run the script:
+| Name | Value |
+| --- | --- |
+| `TELEGRAM_BOT_TOKEN` | Bot token |
+| `TELEGRAM_CHAT_ID` | Group or chat ID |
+| `ACCOUNT_NO` | DESCO account number |
 
-```bash
-python check_balance.py
-```
+## 4. Run it
 
-Output:
+Go to **Actions → Daily DESCO Check → Run workflow** to test it now. After that it runs by itself every day.
 
-```bash
-/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/urllib3/connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'prepaid.desco.org.bd'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
-  warnings.warn(
+## Notes
 
-(True, 'Telegram sent')
-```
-
-Ignore the SSL warning for now (I will update it later); you should see (True, 'Telegram sent`)
-
-And receive a message in your Telegram app.
-
-## Known issues:
-
-It is possible that behind the scenes, DESCO is using multiple endpoints for quering various Meter types.
-
-The endpoint this script is using is:
-
-```text
-https://prepaid.desco.org.bd/api/unified/customer/getBalance?accountNo=
-```
-
-So please test this endpoint with your DESCO account and first verify that this is working for your meter.
+- Never put the token in code, a commit, or a screenshot. If it leaks, send `/revoke` to BotFather and update the secret.
+- Works only if `https://prepaid.desco.org.bd/api/unified/customer/getBalance?accountNo=<your number>` returns a balance for your meter.
