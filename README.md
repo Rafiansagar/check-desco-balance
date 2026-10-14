@@ -7,6 +7,8 @@ Sends your DESCO prepaid balance to Telegram every day at 9:00 PM (Dhaka), using
 1. Open [BotFather](https://t.me/botfather) and send `/newbot`.
 2. Copy the **bot token** it gives you.
 
+Already have a bot? Send `/mybots` to BotFather → pick your bot → **API Token** → copy it.
+
 ## 2. Get the chat ID
 
 **For a group:** add the bot to the group as admin. Add [@userinfobot](https://t.me/userinfobot) to the group to see the group `ID`, then remove it. The ID starts with `-` — keep it.
